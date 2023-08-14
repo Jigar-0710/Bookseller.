@@ -42,7 +42,7 @@ export default function Register(props) {
   };
   return (
     < div style={{overflow:'hidden'}}>
-    <Typography variant='h4' align='center'>
+    <Typography variant='h4' align='center'color='primary' style={{fontWeight:'bolder'}}>
       Create Account
     </Typography>
     <Formik 

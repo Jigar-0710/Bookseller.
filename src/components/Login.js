@@ -7,10 +7,12 @@ import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import authService from '../service/auth.service';
 import { toast } from "react-toastify";
+import { useAuthContext } from '../contexts/auth';
 
 
 
 export default function Login() {
+    const authContext = useAuthContext();
 
     const initialValues = {
         email: '',
@@ -27,6 +29,7 @@ export default function Login() {
         console.log("LOGIN ......")
         authService.login(data).then((res) => {
             toast.success("Successfully registered");
+            authContext.setUser(res);
             navigate("/");
         });
     }
@@ -34,12 +37,12 @@ export default function Login() {
     const navigate = useNavigate();
     return (
         < div style={{ overflow: 'hidden' }}>
-            <Typography variant='h4' align='center'>
+            <Typography variant='h4' align='center'color='primary' style={{fontWeight:'bolder'}}>
                 Login
             </Typography>
 
             <Grid container style={{ height: '80vh', marginTop: '0vh' }} alignItems='center' >
-                <Grid item xs={6} alignItems='stretch' style={{ height: '80%', borderRight: '1.5px solid grey' }} >
+                <Grid item xs={12} sm={6} style={{ height: '80%', borderRight: '1.5px solid grey' }} >
                     <Typography variant='h5' align='center' color='primary'>
                         New Customer
                     </Typography>
@@ -64,7 +67,7 @@ export default function Login() {
                         Create Account
                     </Button>
                 </Grid>
-                <Grid item xs={6} style={{ borderLeft: '1.5px solid grey', height: '80%' }} >
+                <Grid item xs={12} sm={12} style={{ borderLeft: '1.5px solid grey', height: '80%' }} >
                     <Typography variant='h5' align='center'>
                         Registered Customer
                     </Typography>
@@ -74,10 +77,10 @@ export default function Login() {
                         initialValues={initialValues}
                         validationSchema={validationSchema}
                         onSubmit={onSubmit}>
-                        <Form style={{ width: '50%', marginLeft: '12vw' }}>
+                        <Form style={{ width: '50%',minWidth:'350px', marginLeft: '12vw' }}>
                             <div style={{ height: '20vh' }}>
 
-                                <TextFieldWrapper label='Email' name='email' fullWidth='false' />
+                                <TextFieldWrapper label='Email' name='email'/>
                                 <br></br>
                                 <br></br>
                                 <Password label='Password' name='password' />

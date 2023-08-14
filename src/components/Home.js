@@ -11,8 +11,8 @@ export default function Home() {
     return (
         <>
             <Typography variant='h2' color='secondary' align='center'>Home 🏠</Typography>
-            <Typography variant='h2' color='secondary' align='center'>
-                <Button variant='contained' onClick={clickHandler}> cilck to say HII 👋</Button>
+            <Typography variant='h2' align='center' color='primary' style={{fontWeight:'bolder'}}>
+                <Button variant='contained' onClick={clickHandler}> cilck to say HI</Button>
             </Typography>
             <Typography variant='h2' color='secondary' align='center'>
                 {num}

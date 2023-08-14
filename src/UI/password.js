@@ -10,6 +10,7 @@ const Password = ({
   const [show,setShow] = React.useState(false); 
   const [field, meta] = useField(name);
   const configTextField = {
+    autoComplete:"",
     fullWidth: true,
     ...field,
     ...otherProps,

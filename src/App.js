@@ -6,19 +6,20 @@ import Register from './components/Register';
 import { CssBaseline, useTheme } from '@material-ui/core';
 import { createTheme ,ThemeProvider } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
-// import useTheme from '@material-ui/core/styles';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toa } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import Login from './components/Login';
 import Home from './components/Home';
+import Header from './components/Header';
+import { AuthProvider } from './contexts/auth';
 
 const theme = createTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.
-      // main: purple[500],
+      main: purple[500],
       light: "#ff4081",
-      main: "#f50057",
+      // main: "#f50057",
       dark: "#c51162",
       contrastText: "#fff"
     },
@@ -42,32 +43,17 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <AuthProvider>
+      <Header/>
        <ToastContainer /> 
       <CssBaseline />
-        <div >
-        <div style={
-          {
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            background: 'linear-gradient(120deg,pink,blueviolet)',
-            height: 70,
-            boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.15)',
-          }
-        }>
-
-<NavLink to='/' style={{fontSize:'1.2rem',textDecoration:'none'}}>HOME</NavLink><br />
-            <NavLink to='/welcome' style={{fontSize:'1.3rem',textDecoration:'none'}} > WELCOME</NavLink><br />
-            <NavLink to='/register' style={{fontSize:'1.3rem',textDecoration:'none'}}> Register</NavLink>
-        </div>
-
-        <Routes path='/'>
+      <Routes path='/'>
         <Route index element={<Home />} />
-          <Route path='/welcome' element={<Welcome />} />
-          <Route path='/register' element={<Register/>} />
-          <Route path='/login' element={<Login/>} />
-        </Routes>
-      </div>
+        <Route path='/welcome' element={<Welcome />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+      </Routes>
+      </AuthProvider>
     </ThemeProvider>
 
   );
