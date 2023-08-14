@@ -2,11 +2,15 @@ import './App.css';
 import './index.js'
 import { Route, Routes, NavLink } from 'react-router-dom';
 import Welcome from './components/Welcome';
-import User from './components/User';
-import { Button } from '@material-ui/core';
-import {CssBaseline} from '@material-ui/core';
+import Register from './components/Register';
+import { CssBaseline, useTheme } from '@material-ui/core';
 import { createTheme ,ThemeProvider } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
+// import useTheme from '@material-ui/core/styles';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+import Login from './components/Login';
+import Home from './components/Home';
 
 const theme = createTheme({
   palette: {
@@ -38,7 +42,7 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-
+       <ToastContainer /> 
       <CssBaseline />
         <div >
         <div style={
@@ -47,19 +51,21 @@ function App() {
             justifyContent: 'space-around',
             alignItems: 'center',
             background: 'linear-gradient(120deg,pink,blueviolet)',
-            height: 70
+            height: 70,
+            boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.15)',
           }
         }>
 
-<NavLink to='/' style={{fontSize:'1.2rem',textDecoration:'none'}}>HOME 🏠</NavLink><br />
-            <NavLink to='/welcome' style={{fontSize:'1.3rem',textDecoration:'none'}} > WELCOME 👋</NavLink><br />
-            <NavLink to='/user' style={{fontSize:'1.3rem',textDecoration:'none'}}> USER 🤵 </NavLink>
+<NavLink to='/' style={{fontSize:'1.2rem',textDecoration:'none'}}>HOME</NavLink><br />
+            <NavLink to='/welcome' style={{fontSize:'1.3rem',textDecoration:'none'}} > WELCOME</NavLink><br />
+            <NavLink to='/register' style={{fontSize:'1.3rem',textDecoration:'none'}}> Register</NavLink>
         </div>
 
         <Routes path='/'>
-          <Route index element={<h1>this is HOME PAGE</h1>} />
+        <Route index element={<Home />} />
           <Route path='/welcome' element={<Welcome />} />
-          <Route path='/user' element={<User name="Jigar" role="student" />} />
+          <Route path='/register' element={<Register/>} />
+          <Route path='/login' element={<Login/>} />
         </Routes>
       </div>
     </ThemeProvider>
