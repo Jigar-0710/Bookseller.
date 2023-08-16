@@ -1,6 +1,7 @@
 *::-webkit-scrollbar {
   display: none;
 }
+
 *{
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -8,9 +9,11 @@
 .App {
   text-align: center;
 }
+
 iframe{
   display: none;
 }
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -23,7 +26,7 @@ iframe{
 }
 
 .App-header {
-  background-color: rgb(104, 62, 144);
+  background-color: rgb(193, 132, 250);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

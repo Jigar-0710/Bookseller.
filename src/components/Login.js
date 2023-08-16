@@ -1,8 +1,8 @@
 import React from 'react'
 import { Typography, Button, Container, Grid } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
-import TextFieldWrapper from '../UI/textField';
-import Password from '../UI/password';
+import TextFieldWrapper from '../UI/TextField';
+import Password from '../UI/PassWord';
 import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import authService from '../service/auth.service';
@@ -12,7 +12,8 @@ import { useAuthContext } from '../contexts/auth';
 
 
 export default function Login() {
-    const authContext = useAuthContext();
+
+  const authContext = useAuthContext();
 
     const initialValues = {
         email: '',
@@ -29,7 +30,9 @@ export default function Login() {
         console.log("LOGIN ......")
         authService.login(data).then((res) => {
             toast.success("Successfully registered");
+            // console.log("res",res);
             authContext.setUser(res);
+            // setLogin(true);
             navigate("/");
         });
     }
@@ -37,12 +40,12 @@ export default function Login() {
     const navigate = useNavigate();
     return (
         < div style={{ overflow: 'hidden' }}>
-            <Typography variant='h4' align='center'color='primary' style={{fontWeight:'bolder'}}>
-                Login
+            <Typography variant='h4' align='center' color='primary' style={{fontWeight:'bolder'}}>
+                LOGIN
             </Typography>
 
             <Grid container style={{ height: '80vh', marginTop: '0vh' }} alignItems='center' >
-                <Grid item xs={12} sm={6} style={{ height: '80%', borderRight: '1.5px solid grey' }} >
+                <Grid item xs={12} sm={6}  style={{ height: '80%', borderRight: '1.5px solid grey' }} >
                     <Typography variant='h5' align='center' color='primary'>
                         New Customer
                     </Typography>
@@ -67,8 +70,8 @@ export default function Login() {
                         Create Account
                     </Button>
                 </Grid>
-                <Grid item xs={12} sm={12} style={{ borderLeft: '1.5px solid grey', height: '80%' }} >
-                    <Typography variant='h5' align='center'>
+                <Grid item xs={12} sm={6} style={{ borderLeft: '1.5px solid grey', height: '80%' }} >
+                    <Typography variant='h5' align='center' >
                         Registered Customer
                     </Typography>
                     <div style={{ height: 50 }}></div>
@@ -77,10 +80,10 @@ export default function Login() {
                         initialValues={initialValues}
                         validationSchema={validationSchema}
                         onSubmit={onSubmit}>
-                        <Form style={{ width: '50%',minWidth:'350px', marginLeft: '12vw' }}>
+                        <Form style={{ width: '50%', minWidth:'350px',marginLeft: '12vw' }}>
                             <div style={{ height: '20vh' }}>
 
-                                <TextFieldWrapper label='Email' name='email'/>
+                                <TextFieldWrapper label='Email' name='email'  />
                                 <br></br>
                                 <br></br>
                                 <Password label='Password' name='password' />

@@ -9,10 +9,11 @@ const TextFieldWrapper = ({
 
   const [field, meta] = useField(name);
   const configTextField = {
+    fullWidth: true,
     ...field,
     ...otherProps,
     }
-
+  
   if(meta && meta.touched && meta.error)
   {
     configTextField.error = true;

@@ -1,17 +1,19 @@
 import React from 'react'
-import { Typography, Button, Grid} from '@material-ui/core';
+import { Typography, Button, Grid } from '@material-ui/core';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
-import TextFieldCustom from '../UI/textField';
-import Password from '../UI/password';
-import Select from '../UI/select';
+import TextFieldCustom from '../UI/TextField';
+import Password from '../UI/PassWord';
+import Select from '../UI/Select';
 import authService from '../service/auth.service';
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom';
 
 export default function Register(props) {
+
   const navigate = useNavigate();
+
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -21,16 +23,23 @@ export default function Register(props) {
     roleId: ''
   }
 
-  const Option = ['buyer', 'Seller'];
+
+  const Option = [{id:3,name:'buyer'}, {id:2,name:'seller'}];
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required('First Name isRequired'),
+
     lastName: Yup.string().required('Last Name isRequired'),
+
     email: Yup.string().email('Email is invalid').required('Email is required'),
+
     password: Yup.string().required('Password is required').min(5, 'Password must be atleast 5 characters'),
+
     confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Password must match').required('Confirm Password is required'),
+
     roleId: Yup.number().required('Role is required')
   })
+
 
   const onSubmit = (data) => {
     console.log("submitting")
@@ -41,19 +50,22 @@ export default function Register(props) {
     });
   };
   return (
-    < div style={{overflow:'hidden'}}>
-    <Typography variant='h4' align='center'color='primary' style={{fontWeight:'bolder'}}>
-      Create Account
-    </Typography>
-    <Formik 
+    < div style={{ overflow: 'hidden' }}>
+      <Typography variant='h4' align='center' color='primary' style={{fontWeight:'bolder'}}>
+        CREATE ACCOUNT
+      </Typography>
+
+
+
+      <Formik
         validateOnChange='true'
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}>
-
         <Form >
 
-          <Typography variant='h5' style={{ marginLeft: '5.55vw' }}>
+
+          <Typography variant='h5' style={{ marginLeft: '5.55vw' }} >
             Personal Information
           </Typography>
           <Grid container justifyContent='space-evenly' >
@@ -67,6 +79,8 @@ export default function Register(props) {
           <br></br>
           <br></br>
 
+
+
           <Typography variant='h5' style={{ marginLeft: '5.55vw' }}>
             Email Address
           </Typography>
@@ -75,24 +89,27 @@ export default function Register(props) {
               <TextFieldCustom name='email' label="email" />
             </Grid>
             <Grid item xs={5}>
-              <Select name='roleId' options={Option} label='Roles'/>
+              <Select name='roleId' options={Option} label='Roles' />
             </Grid>
           </Grid>
           <br></br>
           <br></br>
 
 
-          <Typography variant='h5' style={{ marginLeft: '5.55vw' }}>
+          <Typography variant='h5' style={{ marginLeft: '5.55vw' }}  >
             Login Information
           </Typography>
           <Grid container justifyContent='space-evenly'  >
-            <Grid item xs={5}>
+            <Grid item xs={5} >
               <Password name='password' label="Password" />
             </Grid>
-            <Grid item xs={5}>
+            <Grid item xs={5}  >
               <Password name='confirmPassword' label="Confirm Password" />
             </Grid>
           </Grid>
+          <br></br>
+
+
 
           <Grid container justifyContent='space-evenly'>
             <Grid item xs={5}>
@@ -112,7 +129,9 @@ export default function Register(props) {
         </Form>
       </Formik>
 
+
     </div>
 
   )
 }
+

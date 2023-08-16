@@ -10,12 +10,12 @@ const Password = ({
   const [show,setShow] = React.useState(false); 
   const [field, meta] = useField(name);
   const configTextField = {
-    autoComplete:"",
     fullWidth: true,
+    autoComplete:"",
     ...field,
     ...otherProps,
     }
-
+  
   if(meta && meta.touched && meta.error)
   {
     configTextField.error = true;
@@ -25,13 +25,13 @@ const Password = ({
   const handleShow = ()=>{
     setShow(show=>!show);
   }
-
+   
   return (
     <Grid container  style={{position:'relative'}} >
-        <Grid item xs={12}>
+        <Grid item xs={12}  >
             <TextField {...configTextField} type={show?'text':'password'} />
         </Grid>
-        <Grid item onClick={handleShow} style={{position:'absolute',top:17,cursor:'pointer'}}>
+        <Grid item onClick={handleShow} style={{position:'absolute',top:17,cursor:'pointer',fontSize:'1.5rem',right:0}}>
             {show ?  '🔒' : '👁️' }
         </Grid>
     </Grid>
